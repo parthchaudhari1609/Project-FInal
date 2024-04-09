@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Project Report</title>
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    /* Background and General Styling */
+    body {
+      background-color: #f8f9fa; /* Light Gray */
+      font-family: 'Arial', sans-serif;
+      color: #333;
+      margin: 0;
+      padding: 0;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 20px auto;
+      padding: 20px;
+      background-color: #fff;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Title Styling */
+    .project-report-title {
+      text-align: center;
+      font-size: 2.5rem;
+      font-weight: bold;
+      color: #007bff; /* Blue */
+      margin-bottom: 20px;
+    }
+
+    /* Section Headings */
+    h2 {
+      margin-bottom: 1.5rem;
+      color: #007bff; /* Blue */
+    }
+
+    /* Developer List & Module List */
+    .list-group-item {
+      border-color: #ddd;
+      border-top: 0;
+    }
+
+    .module-status {
+      float: right;
+      font-weight: bold;
+      color: #28a745; /* Green for completed */
+      /* Add other status colors (e.g., yellow for in-progress, red for delayed) as needed */
+    }
+
+    /* Task List */
+    .task-list-item {
+      border-color: #ddd;
+      border-top: 0;
+      padding: 1rem;
+    }
+
+    .task-name {
+      font-weight: bold;
+      color: #333;
+    }
+
+    .task-details {
+      color: #6c757d;
+      margin-top: 0.5rem;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1 class="project-report-title">Project Report</h1>
+
+   <h2> Project Name: {{ project.name }}</h2>
+
+    <h2>Developers working on project:</h2>
+    <ul class="list-group">
+      {% for developer in developers %}
+      <li class="list-group-item">{{ developer }}</li>
+      {% endfor %}
+    </ul>
+
+    <h2>Modules:</h2>
+    <ul class="list-group">
+      {% for module in modules %}
+      <li class="list-group-item">
+        {{ module.moduleName }} - {{ module.description }}
+        <span class="module-status">{{ module.status }}</span>
+      </li>
+      {% endfor %}
+    </ul>
+
+    <h2>Tasks:</h2>
+    <ul class="list-group">
+      {% for task in tasks %}
+      <li class="task-list-item">
+        <strong class="task-name">{{ task.task_name }}</strong>
+        <div class="task-details">
+          {{ task.description }} - {{ task.status }} - {{ task.time_taken_minutes }} minutes
+        </div>
+      </li>
+      {% endfor %}
+    </ul>
+  </div>
+</body>
+</html>

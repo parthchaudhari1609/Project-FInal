@@ -1,0 +1,159 @@
+{% extends "../base.html" %} 
+{% load static %} 
+{% block content %}
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Developer Dashboar</title>
+    <style>
+      /* Custom CSS for card content */
+      .card-custom .card-body {
+          color: black; /* Set text color to white */
+      }
+      .card-custom .card-body .list-group-item {
+        color: black; /* Set text color of the list items */
+    }
+      .list-group{
+        color: black;
+      }
+  </style>
+    
+  </head>
+  <body>
+    <div class="container-fluid py-4">
+      <div class="row">
+        <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
+          <div class="card">
+            <div class="card-body p-3">
+              <div class="row">
+                <div class="col-8">
+                  <div class="numbers">
+                    <p class="text-sm mb-0 text-uppercase font-weight-bold">Total Projects</p>
+                    <h5 class="font-weight-bolder">
+                       
+                    </h5>
+                    <p class="mb-0">
+                      <span class="text-success text-sm font-weight-bolder">{{ total_projects }}</span>
+                      
+                    </p>
+                  </div>
+                </div>
+                <div class="col-4 text-end">
+                  <div class="icon icon-shape bg-gradient-primary shadow-primary text-center rounded-circle">
+                    <i class="ni ni-money-coins text-lg opacity-10" aria-hidden="true"></i>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
+          <div class="card">
+            <div class="card-body p-3">
+              <div class="row">
+                <div class="col-8">
+                  <div class="numbers">
+                    <p class="text-sm mb-0 text-uppercase font-weight-bold">Total Modules</p>
+                    <h5 class="font-weight-bolder">
+                      
+                    </h5>
+                    <p class="mb-0">
+                      <span class="text-success text-sm font-weight-bolder">{{ total_modules }}</span>
+                      
+                    </p>
+                  </div>
+                </div>
+                <div class="col-4 text-end">
+                  <div class="icon icon-shape bg-gradient-danger shadow-danger text-center rounded-circle">
+                    <i class="ni ni-world text-lg opacity-10" aria-hidden="true"></i>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
+          <div class="card">
+            <div class="card-body p-3">
+              <div class="row">
+                <div class="col-8">
+                  <div class="numbers">
+                    <p class="text-sm mb-0 text-uppercase font-weight-bold">Total Tasks</p>
+                    <h5 class="font-weight-bolder">
+                    
+                    </h5>
+                    <p class="mb-0">
+                      <span class="text-danger text-sm font-weight-bolder">{{ total_tasks }}</span>
+                     
+                    </p>
+                  </div>
+                </div>
+                <div class="col-4 text-end">
+                  <div class="icon icon-shape bg-gradient-success shadow-success text-center rounded-circle">
+                    <i class="ni ni-paper-diploma text-lg opacity-10" aria-hidden="true"></i>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-xl-3 col-sm-6">
+          <div class="card">
+            <div class="card-body p-3">
+              <div class="row">
+                <div class="col-8">
+                  <div class="numbers">
+                    <p class="text-sm mb-0 text-uppercase font-weight-bold">Total Developers</p>
+                    <h5 class="font-weight-bolder">
+                    
+                    </h5>
+                    <p class="mb-0">
+                      <span class="text-success text-sm font-weight-bolder">{{ total_developers}}</span>
+                    </p>
+                  </div>
+                </div>
+                <div class="col-4 text-end">
+                  <div class="icon icon-shape bg-gradient-warning shadow-warning text-center rounded-circle">
+                    <i class="ni ni-cart text-lg opacity-10" aria-hidden="true"></i>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      <div class="row mt-4">
+        {% for status, tasks in user_tasks.items %}
+        <div class="col-md-6 col-lg-3 mb-4">
+            <div class="card card-custom">
+                <div class="card-header">{{ status }}</div>
+                <div class="card-body">
+                    <ul class="list-group">
+                        {% for task in tasks %}
+                        <li class="list-group-item">
+                          <span><strong>Task Name:</strong> {{ task.task.task_name }}</span><br>
+                            <span><strong>Status:</strong> {{ task.task.status.status_name }}</span><br>
+                            <span><strong>Total Minutes:</strong> {{ task.task.totalUtilMinutes }}</span>
+                            <form action="{% url 'update_task_status' task.task.id %}" method="POST" style="display: inline;">
+                              {% csrf_token %}
+                              <button class="btn btn-sm btn-success change-status-btn">Change Status</button>
+                            </form>
+                        </li>
+                        <!-- Add more task details here as needed -->
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+
+        
+             
+       </div>
+    </div>
+  </body>
+</html>
+{% endblock content %}

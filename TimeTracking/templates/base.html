@@ -1,0 +1,61 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css" type="text/css">
+  <!-- date picker above-->
+  <link rel="apple-touch-icon" sizes="76x76" href="{% static './assets/img/apple-icon.png' %}" type="text/css">
+<link rel="icon" type="image/png" href="{% static './assets/img/favicon.png' %}" type="text/css">
+
+<!--     Fonts and icons     -->
+<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" type="text/css" />
+
+<!-- Nucleo Icons -->
+<link href="{% static './assets/css/nucleo-icons.css' %}" rel="stylesheet" type="text/css" />
+<link href="{% static './assets/css/nucleo-svg.css' %}" rel="stylesheet" type="text/css" />
+
+<!-- Font Awesome Icons -->
+<script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
+<link href="{% static './assets/css/nucleo-svg.css' %}" rel="stylesheet" type="text/css" />
+
+<!-- CSS Files -->
+
+
+
+<link id="pagestyle" href="{% static './assets/css/soft-ui-dashboard.css' %}" rel="stylesheet" type="text/css" />
+
+   
+  <style type="text/css">/* Chart.js */
+    @-webkit-keyframes chartjs-render-animation{from{opacity:0.99}to{opacity:1}}@keyframes chartjs-render-animation{from{opacity:0.99}to{opacity:1}}.chartjs-render-monitor{-webkit-animation:chartjs-render-animation 0.001s;animation:chartjs-render-animation 0.001s;}</style>
+  <script type="text/javascript" charset="UTF-8" src="https://maps.googleapis.com/maps-api-v3/api/js/56/1/intl/en_gb/common.js"></script>
+  <script type="text/javascript" charset="UTF-8" src="https://maps.googleapis.com/maps-api-v3/api/js/56/1/intl/en_gb/util.js"></script>
+
+</head>
+<body class="g-sidenav-show  bg-gray-100" >
+   
+ 
+    
+  {% block navbar %}
+      {% include "./sidebar.html" %}
+    {%endblock navbar %}  
+    
+    <main class="main-content position-relative max-height-vh-100 h-100 border-radius-lg ">
+      {% block nav %}
+      {% include "./navbar.html" %}
+      {% endblock nav %}
+      <div class="container-fluid py-4">
+        
+        {% block content %}
+    
+        {% endblock content %}
+    
+      </div>  
+    </main>
+ 
+  
+  
+        
+</body>
+</html>

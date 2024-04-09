@@ -1,0 +1,19 @@
+{% extends '../base.html' %}
+{% block content %}
+<body>
+    <div class="row">
+        <div class="col-12">
+          <div class="card mb-4">
+            <div class="card-header pb-0">
+              <h5>{{project.name}}</h5>
+              <h6>Technology: {{project.technology}}</h6>
+              <h6>Description: {{project.description}}</h6>
+              <h6>Estimated Hours: {{project.estimated_hours}}</h6>
+              <h6>Start Date: {{project.startDate}}</h6>
+              <h6>End Date: {{project.endDate}}</h6>
+              <a href="{% url 'generate_html_report' project.id %}" > Report</a>
+            </div>
+        </div>
+    </div>
+    
+{% endblock content %}

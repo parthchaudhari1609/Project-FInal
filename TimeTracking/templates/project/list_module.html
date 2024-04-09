@@ -1,0 +1,138 @@
+{% extends "../base.html" %} {% block content %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Module List</title>
+  </head>
+  <body>
+    <div class="col-lg-8 col-md-6 mb-md-0 mb-4" style="width: 1500px;">
+      <div class="card">
+        <div class="card-header pb-0">
+          <div class="row">
+            <div class="col-lg-6 col-7">
+              <h5>Modules</h5>
+              <a href = "{% url 'module_create' %}" class="btn btn-primary btn-sm">Create Module </a>
+              <p class="text-sm mb-0">
+                <!-- <i class="fa fa-check text-info" aria-hidden="true"></i> -->
+                <!-- <span class="font-weight-bold ms-1">30 done</span> this month -->
+              </p>
+            </div>
+            <div class="col-lg-6 col-5 my-auto text-end">
+              <!-- <div class="dropdown float-lg-end pe-4">
+    <a class="cursor-pointer" id="dropdownTable" data-bs-toggle="dropdown" aria-expanded="false">
+    <i class="fa fa-ellipsis-v text-secondary" aria-hidden="true"></i>
+    </a>
+    <ul class="dropdown-menu px-2 py-3 ms-sm-n4 ms-n5" aria-labelledby="dropdownTable">
+    <li><a class="dropdown-item border-radius-md" href="javascript:;">Action</a></li>
+    <li><a class="dropdown-item border-radius-md" href="javascript:;">Another action</a></li>
+    <li><a class="dropdown-item border-radius-md" href="javascript:;">Something else here</a></li>
+    </ul>
+    </div> -->
+            </div>
+          </div>
+        </div>
+        <div class="card-body px-0 pb-2">
+          <div class="table-responsive" style="overflow-y: auto;">
+            <table class="table align-items-center mb-0">
+              <thead>
+                <tr>
+                  <th
+                    class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
+                  >
+                    Module Name
+                  </th>
+                  <th
+                    class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2"
+                  >
+                    Project Name 
+                  </th>
+                  <th
+                    class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
+                  >
+                    Estimated Minutes
+                  </th>
+                  <th
+                    class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
+                  >
+                    Status
+                  </th>
+                  <th
+                    class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
+                  >
+                    Start Date
+                  </th>
+
+                  <th
+                    class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
+                  >
+                    Actions
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for module in modules %}
+                <tr>
+                  <td>
+                    <div class="d-flex px-2 py-1">
+                      <div class="d-flex flex-column justify-content-center">
+                        <h6 class="mb-0 text-sm">{{module.moduleName}}</h6>
+                      </div>
+                    </div>
+                  </td>
+                  <td>
+                    <div class="d-flex px-2 py-1">
+                      <div class="d-flex flex-column justify-content-center">
+                        <h6 class="mb-0 text-sm">{{module.project}}</h6>
+                      </div>
+                    </div>
+                  </td>
+                  <td>
+                    <div class="d-flex px-2 py-1">
+                      <div class="d-flex flex-column justify-content-center">
+                        <h6 class="mb-0 text-sm">{{module.estimatedMinutes}}</h6>
+                      </div>
+                    </div>
+                  </td>
+                  <td>
+                    <div class="d-flex px-2 py-1">
+                      <div class="d-flex flex-column justify-content-center">
+                        <h6 class="mb-0 text-sm">{{module.status}}</h6>
+                      </div>
+                    </div>
+                  </td>
+                  <td>
+                    <div class="d-flex px-2 py-1">
+                      <div class="d-flex flex-column justify-content-center">
+                        <h6 class="mb-0 text-sm">{{module.startDate}}</h6>
+                      </div>
+                    </div>
+                  </td>
+                  <td>
+                    <div class="d-flex px-2 py-1">
+                      <a href="{% url 'module_edit' module.id %}"  data-toggle="tooltip" data-original-title="Edit user" class="btn btn-warning btn-sm" style="margin-left: 5px;">
+                        Edit
+                      </a>
+                      <a href="{% url 'module_detail' module.id %}"  data-toggle="tooltip" data-original-title="Edit user" class="btn btn-success btn-sm" style="margin-left: 5px;">
+                          Detail
+                        </a>
+                        <a href="{% url 'module_delete' module.id %}"    class="btn btn-danger btn-sm" style="margin-left: 5px;">
+                          Delete
+                        </a>
+                        <a href="{% url 'task_create' %}"    class="btn btn-info btn-sm" style="margin-left: 5px;">
+                          Create Task
+                        </a>
+                    </div>
+                  </td>
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
+{% endblock content %}

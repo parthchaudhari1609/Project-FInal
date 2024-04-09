@@ -1,0 +1,210 @@
+{% extends "../base.html" %} {% block content %}
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="container-fluid py-4">
+      <div class="row">
+        <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
+          <div class="card">
+            <div class="card-body p-3">
+              <div class="row">
+                <div class="col-8">
+                  <div class="numbers">
+                    <p class="text-sm mb-0 text-uppercase font-weight-bold">Total Projects</p>
+                    <h5 class="font-weight-bolder">
+                       
+                    </h5>
+                    <p class="mb-0">
+                      <span class="text-success text-sm font-weight-bolder">{{ total_projects }}</span>
+                      
+                    </p>
+                  </div>
+                </div>
+                <div class="col-4 text-end">
+                  <div class="icon icon-shape bg-gradient-primary shadow-primary text-center rounded-circle">
+                    <i class="ni ni-money-coins text-lg opacity-10" aria-hidden="true"></i>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
+          <div class="card">
+            <div class="card-body p-3">
+              <div class="row">
+                <div class="col-8">
+                  <div class="numbers">
+                    <p class="text-sm mb-0 text-uppercase font-weight-bold">Total Modules</p>
+                    <h5 class="font-weight-bolder">
+                      
+                    </h5>
+                    <p class="mb-0">
+                      <span class="text-success text-sm font-weight-bolder">{{ total_modules }}</span>
+                      
+                    </p>
+                  </div>
+                </div>
+                <div class="col-4 text-end">
+                  <div class="icon icon-shape bg-gradient-danger shadow-danger text-center rounded-circle">
+                    <i class="ni ni-world text-lg opacity-10" aria-hidden="true"></i>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
+          <div class="card">
+            <div class="card-body p-3">
+              <div class="row">
+                <div class="col-8">
+                  <div class="numbers">
+                    <p class="text-sm mb-0 text-uppercase font-weight-bold">Total Tasks</p>
+                    <h5 class="font-weight-bolder">
+                    
+                    </h5>
+                    <p class="mb-0">
+                      <span class="text-danger text-sm font-weight-bolder">{{ total_tasks }}</span>
+                     
+                    </p>
+                  </div>
+                </div>
+                <div class="col-4 text-end">
+                  <div class="icon icon-shape bg-gradient-success shadow-success text-center rounded-circle">
+                    <i class="ni ni-paper-diploma text-lg opacity-10" aria-hidden="true"></i>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-xl-3 col-sm-6">
+          <div class="card">
+            <div class="card-body p-3">
+              <div class="row">
+                <div class="col-8">
+                  <div class="numbers">
+                    <p class="text-sm mb-0 text-uppercase font-weight-bold">Total Developers</p>
+                    <h5 class="font-weight-bolder">
+                    
+                    </h5>
+                    <p class="mb-0">
+                      <span class="text-success text-sm font-weight-bolder">{{ total_developers}}</span>
+                    </p>
+                  </div>
+                </div>
+                <div class="col-4 text-end">
+                  <div class="icon icon-shape bg-gradient-warning shadow-warning text-center rounded-circle">
+                    <i class="ni ni-cart text-lg opacity-10" aria-hidden="true"></i>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row mt-4">
+        <div class="col-lg-8 col-md-6 mb-md-0 mb-4">
+            <div class="card">
+                <div class="card-header pb-0">
+                    <div class="row">
+                        <div class="col-lg-6 col-7">
+                            <h5>Projects</h5>
+                            <a href="{% url 'project_create' %}" class="btn btn-primary btn-sm">Add Project</a>
+                        </div>
+                        <!-- Add any other project-related actions/buttons here if needed -->
+                    </div>
+                </div>
+                <div class="card-body px-0 pb-2">
+                    <div class="table-responsive" style="overflow-y: auto;">
+                        <table class="table align-items-center mb-0">
+                            <!-- Table header -->
+                            <thead>
+                                <tr>
+                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Project Name</th>
+                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Technology</th>
+                                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Estimated Hours</th>
+                                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Start Date</th>
+                                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">End Date</th>
+                                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Actions</th>
+                                </tr>
+                            </thead>
+                            <!-- Table body -->
+                            <tbody>
+                                {% for project in projects %}
+                                <tr>
+                                    <td>{{ project.name }}</td>
+                                    <td>{{ project.technology }}</td>
+                                    <td>{{ project.estimated_hours }}</td>
+                                    <td>{{ project.startDate }}</td>
+                                    <td>{{ project.endDate }}</td>
+                                    <td>
+                                        <a href="{% url 'project_edit' project.id %}" data-toggle="tooltip" data-original-title="Edit user" class="btn btn-warning btn-sm">Edit</a>
+                                        <a href="{% url 'project_detail' project.id %}" data-toggle="tooltip" data-original-title="Edit user" class="btn btn-success btn-sm">Detail</a>
+                                        <a href="{% url 'project_delete' project.id %}" class="btn btn-danger btn-sm">Delete</a>
+                                        <a href="{% url 'project_team_create'  %}" class="btn btn-info btn-sm">Create Team</a>
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4 col-md-6">
+            <div class="card">
+                <div class="card-header">
+                    <h5>Tasks with Assigned Users</h5>
+                </div>
+                <div class="card-body">
+                    <!-- Iterate through projects -->
+                    {% for project in projects %}
+                    <h6>{{ project.name }}</h6>
+                    <ul>
+                        <!-- Iterate through tasks within each project -->
+                        {% for task in project.task_set.all %}
+                        <li>
+                            <strong>Task: </strong>{{ task.task_name }}
+                            <!-- Display priority if available -->
+                            {% if task.priority %}
+                            <br><strong>Priority: </strong>
+                            <!-- Apply different colors based on priority level -->
+                            {% if task.priority == 'High' %}
+                            <span style="color: red;">{{ task.get_priority_display }}</span>
+                            {% elif task.priority == 'Medium' %}
+                            <span style="color: orange;">{{ task.get_priority_display }}</span>
+                            {% else %}
+                            <span style="color: green;">{{ task.get_priority_display }}</span>
+                            {% endif %}
+                            {% endif %}
+                            <!-- Iterate through users assigned to the task -->
+                            {% for user_task in task.usertask_set.all %}
+                            <br><strong>Developer: </strong>{{ user_task.user.username }}
+                            {% empty %}
+                            <br>- No user assigned
+                            {% endfor %}
+                        </li>
+                        <br>
+                        {% endfor %}
+                    </ul>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+    
+      
+      
+    </div>
+  </body>
+</html>
+{% endblock content %}

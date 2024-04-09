@@ -1,0 +1,87 @@
+{% extends "../base.html" %} 
+{% load static %} 
+{% block content %}
+{% load crispy_forms_tags %}
+
+
+<head>
+ 
+</head>
+<body>
+<div class="col-md-8">
+  <div class="card">
+    <div class="card-header">
+      <h4 class="title">Create Task</h4>
+    </div>
+    <div class="card-body">
+      <form method="POST">
+        {% csrf_token %}
+        <div class="row">
+          <div class="col-md-4 pr-md-1">
+            <div class="form-group">
+              <!-- <input type="text" class="form-control" disabled="" placeholder="Company" value="Creative Code Inc."> -->
+              {{form.task_name|as_crispy_field}}
+            </div>
+          </div>
+
+        </div>
+        <div class="row">
+          <div class="col-md-4 pr-md-1">
+            <div class="form-group">
+              {{form.project|as_crispy_field}}  
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-4 pr-md-1">
+            <div class="form-group">
+              {{form.module|as_crispy_field}}  
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-4 pr-md-1">
+            <div class="form-group">
+              {{form.status|as_crispy_field}}  
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-4 pr-md-1">
+            <div class="form-group">
+              {{form.priority|as_crispy_field}}  
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-4 pr-md-1">
+            <div class="form-group">
+              {{form.description|as_crispy_field}}  
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-4 pr-md-1">
+            <div class="form-group">
+              {{form.estimatedMinutes|as_crispy_field}}  
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-4 pr-md-1">
+            <div class="form-group">
+              {{form.totalUtilMinutes|as_crispy_field}}  
+            </div>
+          </div>
+        </div>
+        <div class="card-footer">
+          <input type="submit" class="btn btn-fill btn-primary" value="Create">  
+        </div>
+      </form>
+    </div>
+    
+  </div>
+</div>
+</body>
+{% endblock content %}
+
